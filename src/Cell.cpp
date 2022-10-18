@@ -19,5 +19,5 @@ void Cell::SetValue(char _value)
 
 void Cell::Pop()
 {
-    this->value = 'X';
+    SetValue(' ');
 };

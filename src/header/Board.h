@@ -16,14 +16,19 @@ public:
     int GetWidth();
     int GetHeight();
 
-    Cell GetCell(int _x, int _y);
-    void SetCell(int _x, int _y, Cell _cell);
+    Cell *GetCell(int _x, int _y);
+    void SetCell(int _x, int _y, Cell *_cell);
 
     void InitializeBoard();
     void PrintBoard();
 
+    bool CanPopCell(string *callback, int _x, int _y, char _value);
+    void PopCell(int _x, int _y, char _value);
+
+    void UpdateBoard();
+
 private:
     int width;
     int height;
-    vector<vector<Cell>> cells;
+    vector<vector<Cell *>> cells;
 };

@@ -17,7 +17,11 @@ void BombCell::SetValue(char _value)
     this->value = _value;
 };
 
-void BombCell::Pop()
-{
-    this->value = 'X';
-};
+// void BombCell::Pop(Board *_board, int _x, int _y)
+// {
+//     _board->SetCell(_x, _y, new Cell(' '));
+//     _board->SetCell(_x + 1, _y, new Cell(' '));
+//     _board->SetCell(_x - 1, _y, new Cell(' '));
+//     _board->SetCell(_x, _y + 1, new Cell(' '));
+//     _board->SetCell(_x, _y - 1, new Cell(' '));
+// };

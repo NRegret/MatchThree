@@ -16,8 +16,3 @@ void NormalCell::SetValue(char _value)
 {
     this->value = _value;
 };
-
-void NormalCell::Pop()
-{
-    this->value = 'X';
-};

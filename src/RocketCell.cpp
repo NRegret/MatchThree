@@ -16,8 +16,3 @@ void RocketCell::SetValue(char _value)
 {
     this->value = _value;
 };
-
-void RocketCell::Pop()
-{
-    this->value = 'X';
-};

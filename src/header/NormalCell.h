@@ -11,6 +11,4 @@ public:
 
     char GetValue();
     void SetValue(char _value);
-
-    void Pop() override;
 };

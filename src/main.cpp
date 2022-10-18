@@ -6,13 +6,42 @@ using namespace std;
 int main()
 {
     srand(time(NULL));
-    system("cls");
 
-    Board board = Board(10, 10);
+    string callback;
 
-    board.InitializeBoard();
+    Board *board = new Board(10, 10);
 
-    board.PrintBoard();
+    board->InitializeBoard();
+
+    while (true)
+    {
+        system("cls");
+        if (callback != "")
+        {
+            cout << "     " << callback << "\n\n";
+            callback = "";
+        }
+
+        board->PrintBoard();
+
+        int x, y;
+        char value;
+
+        cin >>
+            x >> y;
+
+        x = x - 1;
+        y = y - 1;
+
+        value = board->GetCell(x, y)->GetValue();
+
+        if (board->CanPopCell(&callback, x, y, value))
+        {
+            board->PopCell(x, y, value);
+        }
+
+        board->UpdateBoard();
+    }
 
     return 0;
 }
