@@ -1,25 +1,29 @@
-#include "Cell.h"
+#pragma once
+
+#include "NormalCell.h"
+#include "BombCell.h"
+#include "RocketCell.h"
+#include <iostream>
 #include <vector>
+
+using namespace std;
 
 class Board
 {
 public:
-    Board();
     Board(int _width, int _height);
-    void setWidth(int _width);
-    void setHeight(int _height);
-    int getWidth();
-    int getHeight();
-    void setCell(int _x, int _y, Cell *_cell);
-    Cell getCell(int _x, int _y);
-    void printBoard();
 
-    void clearHorizontal(int _y);
-    void clearVertical(int _x);
-    void clearArea(int _x, int _y);
+    int GetWidth();
+    int GetHeight();
+
+    Cell GetCell(int _x, int _y);
+    void SetCell(int _x, int _y, Cell _cell);
+
+    void InitializeBoard();
+    void PrintBoard();
 
 private:
     int width;
     int height;
-    vector<vector<Cell>> board;
+    vector<vector<Cell>> cells;
 };

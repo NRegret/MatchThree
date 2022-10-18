@@ -1,22 +1,16 @@
-#include "CellType.h"
+#pragma once
+
+#include "Cell.h"
+#include <iostream>
 
 class BombCell : public Cell
 {
 public:
     BombCell();
-    BombCell(int _x, int _y, char _value);
-    void setX(int _x);
-    void setY(int _y);
-    int getX();
-    int getY();
-    void setValue(char _value);
-    char getValue();
+    BombCell(char _value);
 
-    bool checkCell(Cell *_cell);
+    char GetValue();
+    void SetValue(char _value);
 
-private:
-    int x;
-    int y;
-    CellType type;
-    char value;
+    void Pop() override;
 };

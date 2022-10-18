@@ -1,99 +1,94 @@
-#include "Board.h"
+#include "header/Board.h"
+
 using namespace std;
-
-Board::Board()
-{
-    width = 10;
-    height = 10;
-
-    board.resize(width);
-    for (int i = 0; i < width; i++)
-    {
-        board[i].resize(height);
-    }
-
-    for (int i = 0; i < width; i++)
-    {
-        for (int j = 0; j < height; j++)
-        {
-            board[i][j] = OrdinaryCell(i, j, 'C');
-        }
-    }
-}
 
 Board::Board(int _width, int _height)
 {
     this->width = _width;
     this->height = _height;
-    
-    board.resize(_width);
-    for (int i = 0; i < _width; i++)
-    {
-        board[i].resize(_height);
-    }
+}
 
-    for (int i = 0; i < _width; i++)
+int Board::GetWidth()
+{
+    return this->width;
+}
+
+int Board::GetHeight()
+{
+    return this->height;
+}
+
+Cell Board::GetCell(int _x, int _y)
+{
+    return this->cells[_x][_y];
+}
+
+void Board::SetCell(int _x, int _y, Cell _cell)
+{
+    this->cells[_x][_y] = _cell;
+}
+
+void Board::InitializeBoard()
+{
+    for (int i = 0; i < this->width; i++)
     {
-        for (int j = 0; j < _height; j++)
+        vector<Cell> row;
+        for (int j = 0; j < this->height; j++)
         {
-            board[i][j] = OrdinaryCell(i, j, 'C');
-        }
-    }
-}
-
-void Board::setWidth(int _width)
-{
-    this->width = _width;
-}
-
-void Board::setHeight(int _height)
-{
-    this->height = _height;
-}
-
-int Board::getWidth()
-{
-    return width;
-}
-
-int Board::getHeight()
-{
-    return height;
-}
-
-void Board::setCell(int _x, int _y, char _value)
-{
-    board[_x][_y].setValue(_value);
-}
-
-Cell Board::getCell(int x, int y)
-{
-    return board[x][y];
-}
-
-void Board::printBoard()
-{
-    for (int i = 0; i < width; i++)
-    {
-        cout << " ";
-        for (int j = 0; j < height; j++)
-        {
-            if (j != height - 1)
-                cout << board[i][j].getValue() << " | ";
-            else
-                cout << board[i][j].getValue();
-        }
-        cout << " " << endl;
-
-        if (i != width - 1)
-            for (int j = 0; j < height; j++)
+            int random = rand() % 3;
+            if (random == 0)
             {
-                if (j != height - 1)
-                    cout << "---"
-                         << "|";
+                int randomNormal = rand() % 3;
+                if (randomNormal == 0)
+                    row.push_back(NormalCell('A'));
+                else if (randomNormal == 1)
+                    row.push_back(NormalCell('S'));
                 else
-                    cout << "---";
+                    row.push_back(NormalCell('U'));
             }
+            else if (random == 1)
+                row.push_back(BombCell());
+            else
+                row.push_back(RocketCell());
+        }
+        this->cells.push_back(row);
+    }
+}
+
+void Board::PrintBoard()
+{
+    cout << "      01 | 02 | 03 | 04 | 05 | 06 | 07 | 08 | 09 | 10\n\n";
+
+    for (int i = 0; i < GetWidth(); i++)
+    {
+        int row = i + 1;
+        if (row < 10)
+            cout << " 0" << row << "  ";
+        else
+            cout << " " << row << "  ";
+
+        cout << " ";
+        for (int j = 0; j < GetHeight(); j++)
+        {
+            if (j != 10 - 1)
+                cout << " " << GetCell(i, j).GetValue() << " | ";
+            else
+                cout << " " << GetCell(i, j).GetValue();
+        }
+        cout << " ";
+
+        cout << endl;
+        if (i != GetWidth() - 1)
+        {
+            cout << "     ";
+            for (int j = 0; j < GetHeight(); j++)
+            {
+                if (j != GetHeight() - 1)
+                    cout << "----+";
+                else
+                    cout << "----";
+            }
+        }
         cout << endl;
     }
     cout << endl;

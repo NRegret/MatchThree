@@ -1,16 +1,17 @@
-#include "CellType.h"
+#pragma once
+
+#include <iostream>
 
 class Cell
 {
 public:
-    virtual void setX(int _x) = 0;
-    virtual void setY(int _y) = 0;
-    virtual int getX() = 0;
-    virtual int getY() = 0;
-    virtual void setType(CellType _type) = 0;
-    virtual CellType getType() = 0;
-    virtual void setValue(char _value) = 0;
-    virtual char getValue() = 0;
+    Cell(char _value = ' ');
 
-    virtual bool checkCell(Cell *_cell) = 0;
+    char GetValue();
+    void SetValue(char _value);
+
+    virtual void Pop();
+
+protected:
+    char value;
 };
